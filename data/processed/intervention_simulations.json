@@ -1,0 +1,226 @@
+{
+    "0": {
+        "cool_roof": {
+            "delta_lst": -1.12,
+            "cost_inr": 7811899.18,
+            "feasible_fraction": 0.83,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -2.18,
+            "cost_inr": 9413875.67,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.45,
+            "cost_inr": 20690341.65,
+            "feasible_fraction": 0.63,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -2.43,
+            "cost_inr": 112966508.07,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -1.5,
+            "cost_inr": 19052596.43,
+            "feasible_fraction": 0.83,
+            "is_feasible": true
+        }
+    },
+    "1": {
+        "cool_roof": {
+            "delta_lst": -1.23,
+            "cost_inr": 20936642.16,
+            "feasible_fraction": 0.93,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -2.5,
+            "cost_inr": 17258772.07,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.48,
+            "cost_inr": 52686145.48,
+            "feasible_fraction": 0.67,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -2.48,
+            "cost_inr": 195808613.98,
+            "feasible_fraction": 0.95,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -1.8,
+            "cost_inr": 46953857.37,
+            "feasible_fraction": 0.95,
+            "is_feasible": true
+        }
+    },
+    "2": {
+        "cool_roof": {
+            "delta_lst": -1.44,
+            "cost_inr": 11171825.49,
+            "feasible_fraction": 0.96,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -1.94,
+            "cost_inr": 8472488.11,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.69,
+            "cost_inr": 34805140.6,
+            "feasible_fraction": 0.89,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -2.17,
+            "cost_inr": 101669857.26,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -1.82,
+            "cost_inr": 27527989.88,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        }
+    },
+    "3": {
+        "cool_roof": {
+            "delta_lst": -1.7,
+            "cost_inr": 27094111.09,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -1.7,
+            "cost_inr": 13807017.65,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.68,
+            "cost_inr": 72773385.33,
+            "feasible_fraction": 0.95,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -1.66,
+            "cost_inr": 131794259.41,
+            "feasible_fraction": 0.8,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -1.83,
+            "cost_inr": 57134732.41,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        }
+    },
+    "4": {
+        "cool_roof": {
+            "delta_lst": -1.58,
+            "cost_inr": 404909493.29,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -0.17,
+            "cost_inr": 14748405.22,
+            "feasible_fraction": 0.17,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.65,
+            "cost_inr": 1084549919.72,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -0.01,
+            "cost_inr": 11296650.81,
+            "feasible_fraction": 0.01,
+            "is_feasible": false
+        },
+        "combined": {
+            "delta_lst": -0.35,
+            "cost_inr": 134069883.44,
+            "feasible_fraction": 0.23,
+            "is_feasible": true
+        }
+    },
+    "5": {
+        "cool_roof": {
+            "delta_lst": -1.6,
+            "cost_inr": 1170197581.65,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -0.66,
+            "cost_inr": 135246013.82,
+            "feasible_fraction": 0.46,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.64,
+            "cost_inr": 3075883913.35,
+            "feasible_fraction": 0.98,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -0.39,
+            "cost_inr": 696626799.75,
+            "feasible_fraction": 0.2,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -0.86,
+            "cost_inr": 836425951.9,
+            "feasible_fraction": 0.51,
+            "is_feasible": true
+        }
+    },
+    "6": {
+        "cool_roof": {
+            "delta_lst": -1.71,
+            "cost_inr": 45588041.7,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "tree_canopy": {
+            "delta_lst": -1.35,
+            "cost_inr": 16317384.5,
+            "feasible_fraction": 0.91,
+            "is_feasible": true
+        },
+        "cool_pavement": {
+            "delta_lst": -0.67,
+            "cost_inr": 117898656.34,
+            "feasible_fraction": 1.0,
+            "is_feasible": true
+        },
+        "green_corridor": {
+            "delta_lst": -1.21,
+            "cost_inr": 143090910.22,
+            "feasible_fraction": 0.67,
+            "is_feasible": true
+        },
+        "combined": {
+            "delta_lst": -1.68,
+            "cost_inr": 87790301.77,
+            "feasible_fraction": 0.98,
+            "is_feasible": true
+        }
+    }
+}

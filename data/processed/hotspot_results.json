@@ -1,0 +1,289 @@
+[
+    {
+        "hotspot_id": 0,
+        "centroid_lon": 75.78429333333335,
+        "centroid_lat": 22.707069999999998,
+        "severity_score": 39.22,
+        "severity_anomaly": 1.26,
+        "affected_population": 73662,
+        "area_sq_meters": 675000,
+        "top_drivers": [
+            {
+                "feature": "elevation",
+                "shap_value": 2.2363193035125732,
+                "contribution_pct": 55.6,
+                "effect": "Heating"
+            },
+            {
+                "feature": "ndvi",
+                "shap_value": 0.5030746459960938,
+                "contribution_pct": 12.5,
+                "effect": "Heating"
+            },
+            {
+                "feature": "building_density",
+                "shap_value": -0.41620680689811707,
+                "contribution_pct": 10.4,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": -0.3459632992744446,
+                "contribution_pct": 8.6,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": -0.22191888093948364,
+                "contribution_pct": 5.5,
+                "effect": "Cooling"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 1,
+        "centroid_lon": 75.78507818181819,
+        "centroid_lat": 22.748220909090907,
+        "severity_score": 39.66,
+        "severity_anomaly": 1.43,
+        "affected_population": 181137,
+        "area_sq_meters": 1237500,
+        "top_drivers": [
+            {
+                "feature": "elevation",
+                "shap_value": 1.393230676651001,
+                "contribution_pct": 35.4,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": 1.2800472974777222,
+                "contribution_pct": 32.5,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_green",
+                "shap_value": 0.5536394119262695,
+                "contribution_pct": 14.1,
+                "effect": "Heating"
+            },
+            {
+                "feature": "building_density",
+                "shap_value": -0.2469947189092636,
+                "contribution_pct": 6.3,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "ndvi",
+                "shap_value": -0.23224298655986786,
+                "contribution_pct": 5.9,
+                "effect": "Cooling"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 2,
+        "centroid_lon": 75.78407037037037,
+        "centroid_lat": 22.770249999999994,
+        "severity_score": 39.01,
+        "severity_anomaly": 1.18,
+        "affected_population": 94362,
+        "area_sq_meters": 607500,
+        "top_drivers": [
+            {
+                "feature": "dist_water",
+                "shap_value": 1.4228578805923462,
+                "contribution_pct": 51.7,
+                "effect": "Heating"
+            },
+            {
+                "feature": "ndvi",
+                "shap_value": 0.3925844132900238,
+                "contribution_pct": 14.3,
+                "effect": "Heating"
+            },
+            {
+                "feature": "elevation",
+                "shap_value": -0.3025074601173401,
+                "contribution_pct": 11.0,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "building_density",
+                "shap_value": -0.30035513639450073,
+                "contribution_pct": 10.9,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": -0.11786101758480072,
+                "contribution_pct": 4.3,
+                "effect": "Cooling"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 3,
+        "centroid_lon": 75.80844545454546,
+        "centroid_lat": 22.71201590909091,
+        "severity_score": 39.22,
+        "severity_anomaly": 1.26,
+        "affected_population": 215446,
+        "area_sq_meters": 990000,
+        "top_drivers": [
+            {
+                "feature": "elevation",
+                "shap_value": 1.9699958562850952,
+                "contribution_pct": 58.6,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": -0.5407890677452087,
+                "contribution_pct": 16.1,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "dist_green",
+                "shap_value": 0.3872174024581909,
+                "contribution_pct": 11.5,
+                "effect": "Heating"
+            },
+            {
+                "feature": "ndvi",
+                "shap_value": 0.2189292013645172,
+                "contribution_pct": 6.5,
+                "effect": "Heating"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": 0.10349519550800323,
+                "contribution_pct": 3.1,
+                "effect": "Heating"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 4,
+        "centroid_lon": 75.83523259259259,
+        "centroid_lat": 22.76829518518519,
+        "severity_score": 40.65,
+        "severity_anomaly": 1.82,
+        "affected_population": 3033842,
+        "area_sq_meters": 6075000,
+        "top_drivers": [
+            {
+                "feature": "building_density",
+                "shap_value": 1.578089952468872,
+                "contribution_pct": 29.5,
+                "effect": "Heating"
+            },
+            {
+                "feature": "ndbi",
+                "shap_value": 0.8178102374076843,
+                "contribution_pct": 15.3,
+                "effect": "Heating"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": 0.69195157289505,
+                "contribution_pct": 12.9,
+                "effect": "Heating"
+            },
+            {
+                "feature": "elevation",
+                "shap_value": -0.587334930896759,
+                "contribution_pct": 11.0,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": 0.5426710247993469,
+                "contribution_pct": 10.1,
+                "effect": "Heating"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 5,
+        "centroid_lon": 75.8718776119403,
+        "centroid_lat": 22.73711663113006,
+        "severity_score": 40.4,
+        "severity_anomaly": 1.72,
+        "affected_population": 8862666,
+        "area_sq_meters": 21105000,
+        "top_drivers": [
+            {
+                "feature": "building_density",
+                "shap_value": 1.1454486846923828,
+                "contribution_pct": 30.0,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": 0.8652686476707458,
+                "contribution_pct": 22.6,
+                "effect": "Heating"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": 0.6559229493141174,
+                "contribution_pct": 17.2,
+                "effect": "Heating"
+            },
+            {
+                "feature": "ndbi",
+                "shap_value": 0.5407126545906067,
+                "contribution_pct": 14.1,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_green",
+                "shap_value": 0.22907739877700806,
+                "contribution_pct": 6.0,
+                "effect": "Heating"
+            }
+        ]
+    },
+    {
+        "hotspot_id": 6,
+        "centroid_lon": 75.85644736842106,
+        "centroid_lat": 22.683241228070177,
+        "severity_score": 39.27,
+        "severity_anomaly": 1.28,
+        "affected_population": 355033,
+        "area_sq_meters": 1282500,
+        "top_drivers": [
+            {
+                "feature": "elevation",
+                "shap_value": 0.7786855101585388,
+                "contribution_pct": 28.1,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_green",
+                "shap_value": 0.613379716873169,
+                "contribution_pct": 22.1,
+                "effect": "Heating"
+            },
+            {
+                "feature": "dist_water",
+                "shap_value": -0.5193284153938293,
+                "contribution_pct": 18.7,
+                "effect": "Cooling"
+            },
+            {
+                "feature": "population_density",
+                "shap_value": 0.29741692543029785,
+                "contribution_pct": 10.7,
+                "effect": "Heating"
+            },
+            {
+                "feature": "building_density",
+                "shap_value": 0.21383121609687805,
+                "contribution_pct": 7.7,
+                "effect": "Heating"
+            }
+        ]
+    }
+]
