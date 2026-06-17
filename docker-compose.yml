@@ -1,66 +1,57 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:6
-    container_name: urbancool-mongo
+  # Phase 16: CIOS DevOps Orchestration
+  cios-frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    restart: unless-stopped
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    depends_on:
+      - cios-backend
 
-  redis:
-    image: redis:7-alpine
-    container_name: urbancool-redis
-    ports:
-      - "6379:6379"
-    restart: unless-stopped
-
-  backend:
+  cios-backend:
     build:
       context: ./backend
-    container_name: urbancool-backend
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     environment:
-      - PORT=5000
-      - MONGO_URI=mongodb://mongodb:27017/urbancool
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - JWT_SECRET=supersecretjwtkey123
-      - ANALYTICS_URL=http://analytics:8000
+      - MONGO_URI=mongodb://cios-mongo:27017/cios
+      - REDIS_URL=redis://cios-redis:6379
+      - QDRANT_URL=http://cios-qdrant:6333
     depends_on:
-      - mongodb
-      - redis
-    restart: unless-stopped
+      - cios-mongo
+      - cios-redis
 
-  analytics:
+  cios-ml-worker:
     build:
-      context: ./analytics
-    container_name: urbancool-analytics
-    ports:
-      - "8000:8000"
+      context: ./backend
+      dockerfile: Dockerfile.ml
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - MONGO_URI=mongodb://mongodb:27017/urbancool
+      - REDIS_URL=redis://cios-redis:6379
     depends_on:
-      - redis
-      - mongodb
-    restart: unless-stopped
+      - cios-redis
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: urbancool-frontend
+  cios-mongo:
+    image: mongo:latest
     ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:5000
-    depends_on:
-      - backend
-    restart: unless-stopped
+      - "27017:27017"
+    volumes:
+      - cios_mongo_data:/data/db
+
+  cios-redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  cios-qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
 
 volumes:
-  mongodb_data:
+  cios_mongo_data:
