@@ -65,6 +65,23 @@ The platform features an advanced mathematical optimizer. Given a strict municip
 
 ---
 
+## 🌟 Expansion Features (Urban Climate Operating System)
+
+We have dramatically scaled the platform into a globally deployable operating system by implementing 14 massive AI integrations:
+
+1. **AI Mayor Mode:** Generates strategic 5/10-year plans, policies, and ROI projections instantly.
+2. **Decadal Digital Twin 2050:** A time slider predicting urban heat, vegetation, and population shifts out to 2050.
+3. **Green Corridor Router:** An AI optimization engine that finds optimal contiguous routing paths for new urban forests.
+4. **Energy Demand Predictor:** Time-series forecasting predicting exactly when the electrical grid will fail during heatwaves.
+5. **Critical Infrastructure Protector:** Geofencing analysis protecting hospitals and schools from extreme heat islands.
+6. **Climate Justice Index:** Mapping socio-economic vulnerability against surface temperature to identify heat inequalities.
+7. **Funding Recommendation Engine:** A rules-based matcher connecting proposed interventions to grants (AMRUT, World Bank, Green Climate Fund).
+8. **Climate Copilot (RAG):** A 6-Agent vector intelligence system trained on IPCC and NASA guidelines to answer complex policy questions.
+9. **Interactive Climate Sandbox:** Drag-and-drop ROI simulation for interventions.
+10. **Autonomous Alerting Daemon:** A background AI agent scanning heat forecasts and issuing automated emergency response commands.
+
+---
+
 ## 🏗️ System Architecture
 
 UrbanCool AI is engineered using a decoupled, highly scalable microservices architecture.
