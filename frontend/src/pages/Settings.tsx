@@ -3,6 +3,12 @@ import { Save, Bell, Shield, Database, User } from 'lucide-react';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('general');
+  const [isSaved, setIsSaved] = useState(false);
+
+  const handleSave = () => {
+    setIsSaved(true);
+    setTimeout(() => setIsSaved(false), 2000);
+  };
 
   return (
     <div className="bg-white rounded-xl shadow-sm border overflow-hidden flex h-[700px]">
@@ -65,9 +71,11 @@ export default function Settings() {
                   <option>Manual Only</option>
                 </select>
               </div>
-              <button className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+              <button 
+                onClick={handleSave}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-md transition ${isSaved ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'} text-white`}>
                 <Save size={18} />
-                <span>Save Changes</span>
+                <span>{isSaved ? 'Saved Successfully!' : 'Save Changes'}</span>
               </button>
             </div>
           )}
@@ -91,15 +99,38 @@ export default function Settings() {
           
           {activeTab === 'data' && (
             <div className="space-y-6">
-              <div className="p-4 border border-blue-100 bg-blue-50 rounded-lg">
-                <h3 className="font-medium text-blue-800 mb-2">Google Earth Engine API</h3>
-                <p className="text-sm text-blue-600 mb-3">Status: Connected</p>
-                <button className="bg-white border border-blue-200 text-blue-700 px-3 py-1 rounded text-sm font-medium">Configure</button>
+              <div className="p-4 border border-blue-100 bg-blue-50 rounded-lg flex justify-between items-center">
+                <div>
+                  <h3 className="font-medium text-blue-800 mb-1">Google Earth Engine API</h3>
+                  <p className="text-sm text-blue-600">Status: Connected</p>
+                </div>
+                <button className="bg-white border border-blue-200 text-blue-700 px-3 py-1 rounded text-sm font-medium hover:bg-blue-50">Configure</button>
               </div>
-              <div className="p-4 border border-slate-200 rounded-lg">
-                <h3 className="font-medium text-slate-800 mb-2">OpenStreetMap Database</h3>
-                <p className="text-sm text-slate-500 mb-3">Status: Local Cache Valid</p>
-                <button className="bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded text-sm font-medium">Force Sync</button>
+              <div className="p-4 border border-slate-200 rounded-lg flex justify-between items-center">
+                <div>
+                  <h3 className="font-medium text-slate-800 mb-1">OpenStreetMap Database</h3>
+                  <p className="text-sm text-slate-500">Status: Local Cache Valid</p>
+                </div>
+                <button className="bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded text-sm font-medium hover:bg-slate-50">Force Sync</button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'security' && (
+            <div className="space-y-6">
+              <div className="border-b border-slate-200 pb-4">
+                <h3 className="text-lg font-medium text-slate-800 mb-2">Password Requirements</h3>
+                <p className="text-sm text-slate-500 mb-4">Ensure your account is using a long, random password to stay secure.</p>
+                <button className="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-50 transition">
+                  Change Password
+                </button>
+              </div>
+              <div className="pt-2">
+                <h3 className="text-lg font-medium text-slate-800 mb-2">Two-Factor Authentication</h3>
+                <p className="text-sm text-slate-500 mb-4">Add an extra layer of security to your account.</p>
+                <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition">
+                  Enable 2FA
+                </button>
               </div>
             </div>
           )}
