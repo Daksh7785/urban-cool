@@ -1,4 +1,4 @@
-hotspot_id,recommended_action,cost,temperature_reduction,roi
-1,tree_canopy,17258772.07,2.5,0.026238396229077726
-4,tree_canopy,14748405.22,0.17,0.0349700955667124
-6,tree_canopy,16317384.5,1.35,0.029373246061585423
+hotspot_id,intervention,delta_lst,cost
+0,tree_canopy,1.6,100000.0
+0,cool_roof,1.0,300000.0
+0,cool_pavement,0.8,1600000.0

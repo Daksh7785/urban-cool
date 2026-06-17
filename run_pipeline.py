@@ -1,68 +1,95 @@
-import logging
 import os
+import json
+import logging
 import time
-from src import config
-from src.data_pipeline import run_data_pipeline
-from src.hotspot_detection import run_hotspot_detection
-from src.physics_model import validate_ml_predictions
-from src.intervention_engine import simulate_all_hotspot_interventions, solve_budget_optimization
-from src.report_generator import generate_pdf_report
-from validation import validate_data
 
-# Setup logging
-config.setup_logging()
+import config
+from src.utils.logging_config import setup_logging
+from src.utils.validation import validate_pipeline_outputs
+
+# Phase 1
+from src.data_ingestion.grid_builder import build_base_grid
+from src.data_ingestion.satellite import get_satellite_data
+from src.data_ingestion.osm_features import get_osm_features
+from src.data_ingestion.population import get_population_data
+from src.data_ingestion.elevation import get_elevation_data
+
+# Phase 2
+from src.ml.hotspot_detection import detect_hotspots
+from src.ml.feature_model import train_feature_model
+from src.ml.explainability import generate_explainability
+
+# Phase 3 & 4 (Setup interventions for later)
+from src.physics.cooling_model import simulate_intervention
+from src.optimization.portfolio import optimize_portfolio
+
 logger = logging.getLogger(__name__)
 
-def execute_pipeline():
-    logger.info("==================================================")
-    logger.info("Running UrbanCool AI Comprehensive Pipeline...")
-    logger.info("==================================================")
+def main():
+    logger = setup_logging()
+    logger.info("Starting UrbanCool AI Pipeline...")
     
-    # Stage 1: Data Acquisition
-    logger.info("Stage 1/9: Running Data Acquisition...")
-    run_data_pipeline(force_synthetic=config.CITY.force_offline_mode)
+    start_time = time.time()
     
-    # Stage 2: Data Validation
-    logger.info("Stage 2/9: Running Data Validation...")
-    is_valid = validate_data()
-    if not is_valid:
-        logger.error("Data validation failed! Pipeline aborting.")
-        raise ValueError("Data validation check failed. See outputs/data_quality_report.json for details.")
+    # Phase 1: Data Ingestion
+    logger.info("Phase 1: Data Ingestion")
+    gdf = build_base_grid()
+    gdf = get_satellite_data(gdf)
+    gdf = get_osm_features(gdf)
+    gdf = get_population_data(gdf)
+    gdf = get_elevation_data(gdf)
+    
+    gdf.to_file(config.PATHS.grid_data_path, driver="GeoJSON")
+    logger.info("Grid data saved.")
+    
+    # Validation
+    validate_pipeline_outputs()
+    
+    # Phase 2: ML
+    logger.info("Phase 2: Machine Learning & Explainability")
+    hotspots = detect_hotspots(gdf)
+    
+    model, features = train_feature_model(gdf)
+    hotspots = generate_explainability(model, features, gdf, hotspots)
+    
+    with open(config.PATHS.hotspots_path, "w") as f:
+        json.dump(hotspots, f, indent=4)
         
-    # Stages 3, 4, 5, 6: Feature Engineering, Hotspot Detection, ML Training, SHAP Explainability
-    logger.info("Stages 3-6/9: Running Clustering, ML Model Training, & Attributions...")
-    gdf, hotspots = run_hotspot_detection()
+    # Phase 3 & 4 Simulation pre-computes for test suite
+    logger.info("Phase 3 & 4: Physics and Optimization prep")
+    candidates = []
+    simulations = {}
+    for hs in hotspots:
+        hs_id = hs['hotspot_id']
+        simulations[hs_id] = {}
+        for itype in ["tree_canopy", "cool_roof", "cool_pavement"]:
+            # simulate 20% coverage for base plan
+            delta_lst, cost = simulate_intervention(itype, 20.0, hs['mean_lst'])
+            
+            simulations[hs_id][itype] = {
+                'delta_lst': delta_lst,
+                'cost_inr': cost
+            }
+            candidates.append({
+                'hotspot_id': hs_id,
+                'intervention': itype,
+                'delta_lst': delta_lst,
+                'cost': cost
+            })
+            
+    with open(os.path.join(config.PATHS.processed_data_dir, "intervention_simulations.json"), "w") as f:
+        json.dump(simulations, f, indent=4)
+        
+    portfolio = optimize_portfolio(5000000, candidates)
     
-    # Stage 7: Physics Simulation (Thermodynamic validation)
-    logger.info("Stage 7/9: Running Surface Energy Balance Validation...")
-    gdf_validated = validate_ml_predictions(gdf)
-    
-    # Save validation columns to modeled grid (with retry loop for Windows file lock)
-    for attempt in range(5):
-        try:
-            gdf_validated.to_file(config.PATHS.modeled_grid_path, driver="GeoJSON")
-            break
-        except PermissionError as e:
-            if attempt == 4:
-                raise e
-            logger.warning(f"File lock collision on {config.PATHS.modeled_grid_path}. Retrying in 1.5s...")
-            time.sleep(1.5)
-    logger.info(f"Updated modeled grid with validation columns at: {config.PATHS.modeled_grid_path}")
-    
-    # Stage 8: Intervention simulations (What-if modeling)
-    logger.info("Stage 8/9: Running Micro-climate Intervention Simulations...")
-    sims = simulate_all_hotspot_interventions()
-    
-    # Stage 9: Optimization and PDF Report Export
-    logger.info("Stage 9/9: Running Budget Optimization and PDF Artifact Export...")
-    opt_res = solve_budget_optimization(budget=50000000.0, simulations=sims)
-    generate_pdf_report(budget=50000000.0, opt_results=opt_res)
-    
-    logger.info("==================================================")
-    logger.info("UrbanCool AI Pipeline Executed Successfully!")
-    logger.info("All cache artifacts, metrics, and report PDFs are fully generated.")
-    logger.info("To start the dashboard, run: streamlit run dashboard/app.py")
-    logger.info("==================================================")
+    # Phase 5 Report
+    try:
+        from src.report_generator import generate_report
+        generate_report(gdf, hotspots, portfolio)
+    except Exception as e:
+        logger.warning(f"Report generation skipped/failed: {e}")
+        
+    logger.info(f"Pipeline finished in {time.time() - start_time:.2f}s")
 
 if __name__ == "__main__":
-    execute_pipeline()
+    main()
