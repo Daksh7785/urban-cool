@@ -162,10 +162,10 @@ def test_pipeline():
     
     if all_passed:
         print("ALL TESTS PASSED SUCCESSFULLY! PROJECT IS DEMO-READY.")
-        sys.exit(0)
+        return True
     else:
         print("SOME TESTS FAILED! PLEASE REVIEW ISSUES.")
-        sys.exit(1)
+        assert False, "Pipeline tests failed"
 
 if __name__ == "__main__":
     test_pipeline()

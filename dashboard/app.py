@@ -59,12 +59,27 @@ app_mode = st.sidebar.radio("Navigation", [
 
 if app_mode == "1. City Overview":
     st.title("City Overview Map")
-    m = folium.Map(location=[gdf.geometry.centroid.y.mean(), gdf.geometry.centroid.x.mean()], zoom_start=12)
-    heat_data = [[row.geometry.centroid.y, row.geometry.centroid.x, row['lst']] for _, row in gdf.iterrows()]
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        center_y = gdf.geometry.centroid.y.mean()
+        center_x = gdf.geometry.centroid.x.mean()
+        
+    m = folium.Map(location=[center_y, center_x], zoom_start=12)
+    
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        heat_data = [[row.geometry.centroid.y, row.geometry.centroid.x, row['lst']] for _, row in gdf.iterrows()]
+        
     HeatMap(heat_data).add_to(m)
     for hs in hotspots:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            hs_y = gdf.iloc[hs['cell_indices'][0]].geometry.centroid.y
+            hs_x = gdf.iloc[hs['cell_indices'][0]].geometry.centroid.x
+            
         folium.CircleMarker(
-            location=[gdf.iloc[hs['cell_indices'][0]].geometry.centroid.y, gdf.iloc[hs['cell_indices'][0]].geometry.centroid.x],
+            location=[hs_y, hs_x],
             radius=10, color='red', tooltip=f"Hotspot ID {hs['hotspot_id']}"
         ).add_to(m)
     st_folium(m, width=800, height=500)
