@@ -1,23 +1,18 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-export interface IHotspot extends Document {
-  projectId: mongoose.Types.ObjectId;
-  hotspot_id: number;
-  mean_lst: number;
-  centroid_lat: number;
-  centroid_lon: number;
-  affected_population: number;
-  top_drivers: any[];
-}
-
-const hotspotSchema: Schema = new Schema({
-  projectId: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
-  hotspot_id: { type: Number, required: true },
+const hotspotSchema = new mongoose.Schema({
+  tenantId: { type: String, required: true, default: 'SYSTEM_TENANT' },
+  projectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true },
+  hotspot_id: { type: String, required: true },
   mean_lst: { type: Number, required: true },
-  centroid_lat: { type: Number, required: true },
-  centroid_lon: { type: Number, required: true },
-  affected_population: { type: Number, required: true },
-  top_drivers: { type: Array, default: [] }
-}, { timestamps: true });
+  severity: { type: Number, required: true },
+  geometry: { type: Object, required: true }, // GeoJSON Polygon
+  top_drivers: { type: Array, required: true },
+  forecast: { type: Object },
+  digital_twin_timeline: { type: Object },
+  uhvi_score: { type: Object },
+  pareto_optimization: { type: Object },
+  createdAt: { type: Date, default: Date.now }
+});
 
-export default mongoose.model<IHotspot>('Hotspot', hotspotSchema);
+export const Hotspot = mongoose.model('Hotspot', hotspotSchema);

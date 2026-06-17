@@ -1,19 +1,11 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-export interface IProject extends Document {
-  userId: mongoose.Types.ObjectId;
-  name: string;
-  city: string;
-  bbox: string;
-  status: string;
-}
-
-const projectSchema: Schema = new Schema({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+const projectSchema = new mongoose.Schema({
+  tenantId: { type: String, required: true, default: 'SYSTEM_TENANT' },
   name: { type: String, required: true },
   city: { type: String, required: true },
-  bbox: { type: String, required: true },
-  status: { type: String, default: 'Pending' }
-}, { timestamps: true });
+  bounds: { type: Object, required: true }, // GeoJSON Polygon
+  createdAt: { type: Date, default: Date.now }
+});
 
-export default mongoose.model<IProject>('Project', projectSchema);
+export const Project = mongoose.model('Project', projectSchema);
